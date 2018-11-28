@@ -30,6 +30,7 @@ public class PROG_Boletin_12_1 {
         g1.aparcar(c6);
         
         g1.salida(c1, 4, 2);
+        g1.aparcar(c6);
     }
     
 }

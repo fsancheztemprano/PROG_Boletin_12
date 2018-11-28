@@ -10,15 +10,16 @@ package PROG_Boletin_12_1;
  * @author fsancheztemprano
  */
 public class Garaxe {
+
     private int plazasDisponibles;
     private int plazasOcupadas;
+    private Coche[] coches;
 
     public Garaxe(int plazasDisponibles, int plazasOcupadas) {
         this.plazasDisponibles = plazasDisponibles;
         this.plazasOcupadas = plazasOcupadas;
+        this.coches = new Coche[plazasDisponibles];
     }
-
- 
 
     public int getPlazasDisponibles() {
         return plazasDisponibles;
@@ -35,35 +36,65 @@ public class Garaxe {
     public void setPlazasOcupadas(int plazasOcupadas) {
         this.plazasOcupadas = plazasOcupadas;
     }
-    
-    public boolean aparcar(Coche coche){
-        if(plazasOcupadas < plazasDisponibles){
+
+    public boolean aparcar(Coche coche) {
+        if (plazasOcupadas < plazasDisponibles) {
             plazasOcupadas++;
-            System.out.println("Coche: " + coche.getMarca() + " con matricula: " + coche.getMatricula() + " Aparcado!");
+            System.out.println("Coche: " + coche.getMarca() + " con matricula: " + coche.getMatricula() + " Aparcado en la plaza:"+plazaLibre());
             coche.setAparcado(true);
+            coches[plazaLibre()] = coche;
             return true;
-        }else{
+        } else {
             System.out.println("No hay plazas disonibles.");
             return false;
         }
     }
-    
-    public boolean salida(Coche coche, int horas, float dineroRecibido){
-        if(coche.isAparcado()){
+
+    public int encontrarCoche(Coche coche) {
+        int i = 0;
+        for (; i <= coches.length; i++) {
+            if (coche == coches[i]) {
+                break;
+            }
+        }
+        return i;
+    }
+
+    public int plazaLibre() {
+        int i = 0;
+        for (; i <= coches.length; i++) {
+            if (coches[i] == null) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void liberarPlaza(int i) {
+        coches[i] = null;
+    }
+
+    public boolean salida(Coche coche, int horas, float dineroRecibido) {
+        if (coche.isAparcado()) {
             plazasOcupadas--;
-            System.out.println("Coche: " + coche.getMarca() + " con matricula: " + coche.getMatricula() + " Saliendo!");
-            System.out.println("Horas: " + horas + "\nPrecio a pagar: "+calcPrecio(horas));
-            System.out.println("Dinero recibido: " + dineroRecibido + "\nDinero Devuelto: "+(dineroRecibido-calcPrecio(horas)) );
+            int plazaCoche=encontrarCoche(coche);
+            liberarPlaza(plazaCoche);
+            System.out.println("Coche: " + coche.getMarca() + " con matricula: " + coche.getMatricula() + " Saliendo de la plaza "+plazaCoche );
+            System.out.println("Horas: " + horas + "\nPrecio a pagar: " + calcPrecio(horas));
+            System.out.println("Dinero recibido: " + dineroRecibido + "\nDinero Devuelto: " + (dineroRecibido - calcPrecio(horas)));
             return true;
-        }else{
+        } else {
             System.out.println("Este coche no esta en nuestro aparcamiento.");
             return false;
         }
     }
-    public float calcPrecio(int horas){
-        if (horas <= 3 )return 1.5f;
-        else return (1.5f+((horas-3)*0.2f));
+
+    public float calcPrecio(int horas) {
+        if (horas <= 3) {
+            return 1.5f;
+        } else {
+            return (1.5f + ((horas - 3) * 0.2f));
+        }
     }
 
 }
-
