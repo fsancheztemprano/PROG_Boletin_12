@@ -18,7 +18,7 @@ public class Ejercicio {
         System.out.print(obj2.modificar(5) + " ");
         obj2 = obj1;
         System.out.println(obj2.modificar(5) + " ");
-    }//fin main 
+    }
 }
 
 class Clase1 {
