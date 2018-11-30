@@ -96,5 +96,13 @@ public class Garaxe {
             return (1.5f + ((horas - 3) * 0.2f));
         }
     }
+    public Coche encontrarCoche(String matricula){
+        for (Coche coche : coches) {
+            if (coche != null && coche.getMatricula().equalsIgnoreCase(matricula)) {
+                return coche;
+            }
+        }
+        return null;
+    }
 
 }
