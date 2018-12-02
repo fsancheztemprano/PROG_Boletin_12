@@ -5,18 +5,20 @@
  */
 package PROG_Boletin_12_1;
 
+
 /**
- *
  * @author fsancheztemprano
  */
 public class Coche {
     private String matricula;
     private String marca;
-    private boolean aparcado=false;
+    private boolean aparcado = false;
+    private long entrada;
 
     public Coche(String matricula, String marca) {
         this.matricula = matricula;
         this.marca = marca;
+        entrada = System.currentTimeMillis();
     }
 
     public String getMatricula() {
@@ -42,6 +44,9 @@ public class Coche {
     public void setAparcado(boolean aparcado) {
         this.aparcado = aparcado;
     }
-    
-    
+
+    public long getEntrada() {
+        return entrada;
+    }
+
 }
