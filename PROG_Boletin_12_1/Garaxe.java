@@ -6,7 +6,6 @@
 package PROG_Boletin_12_1;
 
 /**
- *
  * @author fsancheztemprano
  */
 public class Garaxe {
@@ -40,7 +39,7 @@ public class Garaxe {
     public boolean aparcar(Coche coche) {
         if (plazasOcupadas < plazasDisponibles) {
             plazasOcupadas++;
-            System.out.println("Coche: " + coche.getMarca() + " con matricula: " + coche.getMatricula() + " Aparcado en la plaza:"+plazaLibre());
+            System.out.println("Coche: " + coche.getMarca() + " con matricula: " + coche.getMatricula() + " Aparcado en la plaza:" + plazaLibre());
             coche.setAparcado(true);
             coches[plazaLibre()] = coche;
             return true;
@@ -75,13 +74,13 @@ public class Garaxe {
     }
 
     public float salida(Coche coche, long horas, float dineroRecibido) {
-        float devolucion =dineroRecibido - calcPrecio(horas);
-        if (coche.isAparcado() && devolucion>=0) {
+        float devolucion = dineroRecibido - calcPrecio(horas);
+        if (coche.isAparcado() && devolucion >= 0) {
             plazasOcupadas--;
             int plazaCoche = encontrarCoche(coche);
             liberarPlaza(plazaCoche);
 
-            System.out.println("Coche: " + coche.getMarca() + " con matricula: " + coche.getMatricula() + " Saliendo de la plaza "+plazaCoche );
+            System.out.println("Coche: " + coche.getMarca() + " con matricula: " + coche.getMatricula() + " Saliendo de la plaza " + plazaCoche);
             System.out.println("Horas: " + horas + "\nPrecio a pagar: " + calcPrecio(horas));
             System.out.println("Dinero recibido: " + dineroRecibido + "\nDinero Devuelto: " + (dineroRecibido - calcPrecio(horas)));
             return devolucion;
@@ -98,7 +97,8 @@ public class Garaxe {
             return (1.5f + ((horas - 3) * 0.2f));
         }
     }
-    public Coche encontrarCoche(String matricula){
+
+    public Coche encontrarCoche(String matricula) {
         for (Coche coche : coches) {
             if (coche != null && coche.getMatricula().equalsIgnoreCase(matricula)) {
                 return coche;

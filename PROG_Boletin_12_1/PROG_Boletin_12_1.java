@@ -6,7 +6,6 @@
 package PROG_Boletin_12_1;
 
 /**
- *
  * @author fsancheztemprano
  */
 public class PROG_Boletin_12_1 {
@@ -34,17 +33,18 @@ public class PROG_Boletin_12_1 {
         Garaxe garaxe = new Garaxe(Menu.startGaraxe(), 0);
         do {
             opcionesAccion(Menu.opcionesGaraxe(), garaxe);
-        }while(0==0);
-        
+        } while (0 == 0);
+
     }
-        public static void opcionesAccion(int i, Garaxe g){
-        switch(i){
+
+    public static void opcionesAccion(int i, Garaxe g) {
+        switch (i) {
             case 0:
                 Coche coche = new Coche(Menu.introData("matricula"), Menu.introData("marca"));
                 g.aparcar(coche);
                 break;
             case 1:
-                String matricula=null;
+                String matricula = null;
                 do {
                     matricula = Menu.introData("matricula");
                     Coche c = g.encontrarCoche(matricula);
@@ -53,10 +53,10 @@ public class PROG_Boletin_12_1 {
                     float devolucion;
                     do {
                         float pago = Menu.introPago("Factura\nMatricula: " + c.getMatricula() + "\nTiempo aparcado: " + timeString(c.getEntrada(), salida) + "\nA pagar: " + g.calcPrecio(tiempo) + " €");
-                        devolucion= g.salida(c, tiempo, pago);
-                    }while(devolucion<0);
-                    Menu.msg("Pago completo.\nDevolucion: "+devolucion);
-                }while(g.encontrarCoche(matricula)!=null);
+                        devolucion = g.salida(c, tiempo, pago);
+                    } while (devolucion < 0);
+                    Menu.msg("Pago completo.\nDevolucion: " + devolucion);
+                } while (g.encontrarCoche(matricula) != null);
                 break;
             case 2:
                 System.exit(0);
@@ -69,11 +69,12 @@ public class PROG_Boletin_12_1 {
 
     public static String timeString(long entrada, long salida) {
         String horas = String.valueOf((salida - entrada) / 3600000);
-        String minutos = String.valueOf(((salida-entrada)%3600000)/ 60000);
-        String segundos = String.valueOf((((salida-entrada)%3600000)% 60000) / 1000);
+        String minutos = String.valueOf(((salida - entrada) % 3600000) / 60000);
+        String segundos = String.valueOf((((salida - entrada) % 3600000) % 60000) / 1000);
         return horas + ":" + minutos + ":" + segundos;
     }
-    public static long calcHoras(long entrada, long salida){
+
+    public static long calcHoras(long entrada, long salida) {
         return (salida - entrada) / 3600000;
     }
 
