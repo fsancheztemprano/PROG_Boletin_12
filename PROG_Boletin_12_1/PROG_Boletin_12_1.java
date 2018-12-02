@@ -25,11 +25,17 @@ public class PROG_Boletin_12_1 {
     public static void opcionesAccion(int i, Garaxe g) {
         switch (i) {
             case 0:
-                Coche coche = new Coche(Menu.introData("matricula"), Menu.introData("marca"));
+
+                String matricula = Menu.introData("matricula");
+                if(g.encontrarCoche(matricula)!=null){
+                    Menu.msg("Este coche ya esta aparcado.");
+                    break;
+                }
+                String marca = Menu.introData("marca");
+                Coche coche = new Coche(matricula, marca);
                 g.aparcar(coche);
                 break;
             case 1:
-                String matricula = null;
                 do {
                     matricula = Menu.introData("matricula");
                     Coche c = g.encontrarCoche(matricula);
