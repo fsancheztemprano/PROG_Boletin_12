@@ -14,21 +14,6 @@ public class PROG_Boletin_12_1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        Coche c1 = new Coche("AAA0000", "Opel");
-//        Coche c2 = new Coche("AAA0001", "Renault");
-//        Coche c3 = new Coche("AAA0002", "BMW");
-//        Coche c4 = new Coche("AAA0003", "Seat");
-//        Coche c5 = new Coche("AAA0003", "Toyota");
-//        Coche c6 = new Coche("AAA0003", "Mercedes");
-//        g1.aparcar(c1);
-//        g1.aparcar(c2);
-//        g1.aparcar(c3);
-//        g1.aparcar(c4);
-//        g1.aparcar(c5);
-//        g1.aparcar(c6);
-//        
-//        g1.salida(c1, 4, 2);
-//        g1.aparcar(c6);
 
         Garaxe garaxe = new Garaxe(Menu.startGaraxe(), 0);
         do {
@@ -48,6 +33,7 @@ public class PROG_Boletin_12_1 {
                 do {
                     matricula = Menu.introData("matricula");
                     Coche c = g.encontrarCoche(matricula);
+                    if (c==null)break;
                     long salida = System.currentTimeMillis();
                     long tiempo = calcHoras(c.getEntrada(), salida);
                     float devolucion;
