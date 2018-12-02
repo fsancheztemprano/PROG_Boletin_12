@@ -5,7 +5,6 @@
  */
 package PROG_Boletin_12_1;
 
-import java.util.GregorianCalendar;
 
 /**
  * @author fsancheztemprano
