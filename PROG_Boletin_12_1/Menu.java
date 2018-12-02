@@ -17,7 +17,7 @@ public class Menu {
 
     public static int opcionesGaraxe() {
 
-        String[] options = {"Entrada", "Salida", "Cerrar"};
+        String[] options = {"Entrada", "Salida","Mapa", "Cerrar"};
         return JOptionPane.showOptionDialog(null, "Action:", "Titulo", 0, 0, null, options, null);
     }
 

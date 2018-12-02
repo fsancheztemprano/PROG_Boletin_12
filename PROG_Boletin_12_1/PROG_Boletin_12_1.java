@@ -18,7 +18,7 @@ public class PROG_Boletin_12_1 {
         Garaxe garaxe = new Garaxe(Menu.startGaraxe(), 0);
         do {
             opcionesAccion(Menu.opcionesGaraxe(), garaxe);
-        } while (0 == 0);
+        } while (true);
 
     }
 
@@ -39,35 +39,27 @@ public class PROG_Boletin_12_1 {
                 do {
                     matricula = Menu.introData("matricula");
                     Coche c = g.encontrarCoche(matricula);
-                    if (c==null)break;
-                    long salida = System.currentTimeMillis();
-                    long tiempo = calcHoras(c.getEntrada(), salida);
+                    if (c==null){
+                        Menu.msg("Coche con matricula: "+matricula+" no esta aparcado aqui.");
+                        break;
+                    }
+                    long tiempo = c.calcHoras();
                     float devolucion;
                     do {
-                        float pago = Menu.introPago("Factura\nMatricula: " + c.getMatricula() + "\nTiempo aparcado: " + timeString(c.getEntrada(), salida) + "\nA pagar: " + g.calcPrecio(tiempo) + " €");
+                        float pago = Menu.introPago("Factura\nMatricula: " + c.getMatricula() + "\nTiempo aparcado: " + c.timeString() + "\nA pagar: " + g.calcPrecio(tiempo) + " €");
                         devolucion = g.salida(c, tiempo, pago);
                     } while (devolucion < 0);
                     Menu.msg("Pago completo.\nDevolucion: " + devolucion);
                 } while (g.encontrarCoche(matricula) != null);
                 break;
             case 2:
+                Menu.msg(g.mapa());
+                break;
+            case 3:
                 System.exit(0);
                 break;
             default:
                 break;
         }
-
     }
-
-    public static String timeString(long entrada, long salida) {
-        String horas = String.valueOf((salida - entrada) / 3600000);
-        String minutos = String.valueOf(((salida - entrada) % 3600000) / 60000);
-        String segundos = String.valueOf((((salida - entrada) % 3600000) % 60000) / 1000);
-        return horas + ":" + minutos + ":" + segundos;
-    }
-
-    public static long calcHoras(long entrada, long salida) {
-        return (salida - entrada) / 3600000;
-    }
-
 }

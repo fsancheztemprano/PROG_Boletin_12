@@ -49,4 +49,18 @@ public class Coche {
         return entrada;
     }
 
+
+    public String timeString() {
+        long salida = System.currentTimeMillis();
+        String horas = String.valueOf((salida - entrada) / 3600000);
+        String minutos = String.valueOf(((salida - entrada) % 3600000) / 60000);
+        String segundos = String.valueOf((((salida - entrada) % 3600000) % 60000) / 1000);
+        return horas + ":" + minutos + ":" + segundos;
+    }
+
+    public long calcHoras() {
+        long salida = System.currentTimeMillis();
+        return (salida - entrada) / 3600000;
+    }
+
 }

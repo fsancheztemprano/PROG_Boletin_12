@@ -106,5 +106,18 @@ public class Garaxe {
         }
         return null;
     }
+    public String mapa(){
+        String str="Plaza / Matricula / Marca / Tiempo Aparcado\n";
+        for(int i = 0 ; i<coches.length;i++){
+            if (coches[i]!=null) {
+                str += i + " / " + coches[i].getMatricula() + " / " + coches[i].getMarca() + " / " + coches[i].timeString() + "\n";
+            }else{
+                str += i + " / Plaza Vacia\n";
+            }
+        }
+        return str;
+    }
+
+
 
 }
