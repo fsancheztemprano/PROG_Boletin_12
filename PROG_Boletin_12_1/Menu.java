@@ -25,7 +25,7 @@ public class Menu {
         return JOptionPane.showInputDialog("Introduce la " + str + ": ");
     }
 
-    public static float introPago(String str){
+    public static float introPago(String str) {
 
         return Float.parseFloat(JOptionPane.showInputDialog(str));
     }
