@@ -48,6 +48,9 @@ public class Garaxe {
             return false;
         }
     }
+    public int getPlazasLibres(){
+        return plazasDisponibles - plazasOcupadas;
+    }
 
     public int encontrarCoche(Coche coche) {
         int i = 0;
@@ -85,7 +88,7 @@ public class Garaxe {
             System.out.println("Dinero recibido: " + dineroRecibido + "\nDinero Devuelto: " + (dineroRecibido - calcPrecio(horas)));
             return devolucion;
         } else {
-            System.out.println("Este coche no esta en nuestro aparcamiento o el pago no es suficiente.");
+            Menu.msg("Pago no suficiente.");
             return -1;
         }
     }
